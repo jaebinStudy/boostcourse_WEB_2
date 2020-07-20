@@ -11,15 +11,14 @@
 <body>
 <header class="title">나의 해야할 일들</header>
 
-<nav class="button_float"><a class="button_font" href="todo.jsp">새로운 TO DO 등록</a></nav>
+<nav class="button_float"><a class="button_font" href="todoForm.jsp">새로운 TO DO 등록</a></nav>
 
 <section class="section_float">
 
     <article class="todo">
         <ul>
             <li class="list">TO DO</li>
-            <br>
-            <li class="list">공부하자 재빈아</li>
+
 
 
         </ul>
@@ -28,8 +27,7 @@
     <article class="doing">
         <ul>
             <li class="list">DOING</li>
-            <br>
-            <li class="list">뭐 똥싸기</li>
+
 
 
         </ul>
@@ -38,8 +36,6 @@
     <article class="done">
         <ul>
             <li class="list">DONE</li>
-            <br>
-            <li class="list"> html</li>
 
         </ul>
     </article>

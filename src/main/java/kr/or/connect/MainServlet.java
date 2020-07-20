@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.List;
+import kr.or.connect.TodoDao;
+import kr.or.connect.TodoDto;
 
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
@@ -21,25 +24,33 @@ public class MainServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        String todoName = request.getParameter("todoName");
-        String todoDate = request.getParameter("todoDate");
-        String todoTitle = request.getParameter("todoTitle");
 
 
+        TodoDao dao = new TodoDao();
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("main.jsp");
+        List<TodoDto> list = dao.getTodos();
+
+        for(TodoDto dto : list) {
+            System.out.println(dto);
+        }
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
 
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("main.jsp");
-        requestDispatcher.forward(request,response);
+
     }
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=UTF-8");
 
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("main.jsp");
+        requestDispatcher.forward(request,response);
     }
 }

@@ -18,14 +18,14 @@ public class TodoDto {
     TodoDto() {
 
     }
-    TodoDto(long id,String name,String reqDate,int sequence,String title,String type){
+    TodoDto(long id,String title,String name,int sequence,String type,String reqDate){
         super();
         this.id=id;
-        this.name=name;
-        this.reqDate=reqDate;
-        this.sequence=sequence;
         this.title=title;
+        this.name=name;
+        this.sequence=sequence;
         this.type=type;
+        this.reqDate=reqDate;
 
     }
 
