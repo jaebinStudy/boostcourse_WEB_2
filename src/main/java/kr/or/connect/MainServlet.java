@@ -13,44 +13,31 @@ import java.util.List;
 import kr.or.connect.TodoDao;
 import kr.or.connect.TodoDto;
 
-@WebServlet("/MainServlet")
+@WebServlet("/main")
 public class MainServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     public MainServlet(){
         super();
     }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
-
-
 
         TodoDao dao = new TodoDao();
 
         List<TodoDto> list = dao.getTodos();
 
-        for(TodoDto dto : list) {
-            System.out.println(dto);
-        }
-
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=UTF-8");
+        request.setAttribute("todo",list);
 
 
 
-    }
-
-    @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=UTF-8");
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("main.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/main.jsp");
         requestDispatcher.forward(request,response);
     }
+
+
+
 }

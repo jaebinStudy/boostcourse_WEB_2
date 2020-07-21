@@ -8,28 +8,28 @@ import java.sql.*;
 
 public class TodoDto {
 
-    private long id;
+    private Long id;
     private String name;
-    private String reqDate;
+    private String regdate;
     private int sequence;
     private String title;
     private String type;
 
-    TodoDto() {
+    public TodoDto() {
 
     }
-    TodoDto(long id,String title,String name,int sequence,String type,String reqDate){
+
+    public TodoDto(Long id, String name, String regdate, int sequence, String title, String type){
         super();
-        this.id=id;
-        this.title=title;
-        this.name=name;
-        this.sequence=sequence;
-        this.type=type;
-        this.reqDate=reqDate;
-
+        this.id = id;
+        this.name = name;
+        this.regdate = regdate;
+        this.sequence = sequence;
+        this.title = title;
+        this.type = type;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -37,11 +37,8 @@ public class TodoDto {
         return name;
     }
 
-    public String getReqDate() {
-        Date date = new Date(System.currentTimeMillis());
-        SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyy.MM.dd");
-        reqDate = fourteen_format.format(date);
-        return reqDate;
+    public String getRegdate() {
+        return regdate;
     }
 
     public int getSequence() {
@@ -56,7 +53,7 @@ public class TodoDto {
         return type;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -64,11 +61,11 @@ public class TodoDto {
         this.name = name;
     }
 
-    public void setReqDate(String reqDate) {
-        this.reqDate = reqDate;
+    public void setRegdate(String regdate) {
+        this.regdate = regdate;
     }
 
-    public void setSequence() {
+    public void setSequence(int sequence) {
         this.sequence = sequence;
     }
 
@@ -80,8 +77,9 @@ public class TodoDto {
         this.type = type;
     }
 
-    public String toString() {
-        return title + "등록날짜 :" + reqDate + "," + name + "," + sequence ;
+    @Override
+    public String toString(){
+        return    "Todo [id= " +id + ", name= " +name + ", regdate= " +regdate + ", sequence= " +sequence + ", title= " +title + ", type= " + type + "]";
     }
 }
 

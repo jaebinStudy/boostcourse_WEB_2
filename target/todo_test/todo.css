@@ -1,19 +1,45 @@
 .title{
     text-align: center;
-    font-size: 30px;
-}
-
-
-section>div>ul>.li_1{
-    display: inline-block;
-    float: left;
-    list-style: none;
-    border: 0.5px solid white;
-    width: 200px;
-    height: 50px;
-    color: white;
-    background-color: #cedc74;
+    font-size: 25px;
     font-family: "맑은 고딕 Semilight";
-    font-size:15px;
-    margin: 5px 5px 5px 5px ;
+}
+.form-example{
+padding: 1%  26%;
+}
+.font-color{
+    font-family: "맑은 고딕 Semilight";
+    font-size: 25px;
+}
+#title{
+    width:400px;
+    height:45px;
+}
+#name{
+    width:200px;
+    height:45px;
+}
+.clear{
+    display: inline-block;
+    background-color: #50bcdf;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    color: white;
+    border: 0.5px solid black;
+}
+.submit{
+    display: inline-block;
+    background-color: #50bcdf;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    color: white;
+    border: 0.5px solid black;
+}
+.back_button{
+    display: inline-block;
+    border: 0.5px solid black;
+    width: 98px;
+    height: 28px;
+    font-size: 20px;
 }

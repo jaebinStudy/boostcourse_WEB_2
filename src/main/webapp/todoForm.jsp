@@ -7,59 +7,40 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>나의 해야할 일들</title>
     <link rel="stylesheet" href="todo.css">
-
-    <script>
-        function registerTodo() {
-            var todoName = document.getElementById("todoName").value;
-            var todoTitle = document.getElementById("todoTitle").value;
-            var todoName = document.getElementById("todoName").value;
-
-            if(!todoName){
-                alert("누가 할지 입력해주세요..");
-                return false;
-            }
-            if(!todoDate){
-                alert("날짜를 입력해주세요.");
-                return false;
-            }
-            if (!todoTitle){
-                alert("할 일을 입력해주세요.");
-            }
-            if (todoTitle.length>24){
-                alert("글자수는 24자 이하로 해주세요.");
-            }
-
-            var form = document.getElementById("todoForm");
-            form.submit();
-        }
-
-    </script>
 </head>
 
 
 <body>
+<% String path = request.getContextPath(); %>
+<link rel="stylesheet" type="text/css" href="<%=path%>/todo.css"/>
 <header><h1 class="title">할 일 등록</h1></header>
 
 <section>
-    <form action="main.jsp" method="post" class="form-example">
-        <label for="todo"> 어떤 일 인가요? </label>
-        <input type="text" id="todo" size=24 Placeholder="ex)swift공부하기(24자까지)" required>
-
+    <form name="input" action='<%=path%>/add' method="post" class="form-example">
         <div class="form-example">
-            <label for="name">누가 할 일 인가요?</label>
-            <input type="text" id="name" Placeholder="ex)정재빈" required>
+        <label for="title"> <span class = font-color>어떤 일 인가요?</span></label> <br>
+        <input  id="title" name="title" type="text" maxlength="24" Placeholder="ex)swift공부하기(24자까지)" required/>
         </div>
 
         <div class="form-example">
-            <input type="radio" id="1순위" value="1순위">
-            <input type="radio" id="2순위" value="2순위">
-            <input type="radio" id="3순위" value="3순위">
+            <label for="name"><span class = font-color>누가 할 일 인가요?</span></label><br>
+            <input id="name" name ="name" type="text" Placeholder="ex)정재빈" required/>
         </div>
 
         <div class="form-example">
-            <li><input type="submit" name="제출" value="submit"></li>
-            <li><input type="submit" name="내용지우기" value="submit"></li>
-            <li><a href="main.jsp">이전</a></li>
+
+
+            <span span class = font-color>우선 순위를 선택해주세요.</span> <br>
+            <input  type="radio" name="sequence" value="1순위" checked="checked"><span>1순위</span>
+            <input  type="radio" name="sequence" value="2순위"><span>2순위</span>
+            <input  type="radio" name="sequence" value="3순위"><span>3순위</span>
+        </div>
+
+        <div class="form-example">
+            <a href="/MainServlet" class="back_button">이전</a>
+            <input  type="submit" value="제출" class="submit">
+            <input  type="reset" value="초기화" class="clear">
+
         </div>
     </form>
 </section>
