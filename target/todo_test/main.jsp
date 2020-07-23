@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList" %>
-<%@page import="kr.or.connect.todo.dto.TodoDto" %>
+<%@page import="kr.or.connect.TodoDto" %>
 <%@page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
@@ -11,8 +11,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Todo</title>
-    <% String path = request.getContextPath(); %>
-    <link rel="stylesheet" type="text/css" href="<%=path%>/main.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
 
 </head>
 <body>
@@ -23,7 +22,7 @@
         </div>
 
         <div id="header-column-right">
-            <a href="<%=path%>/form" class="button-todo">새로운 TO DO 등록</a>
+            <a href="todoForm.jsp" class="button-todo">새로운 TO DO 등록</a>
         </div>
     </div>
 </header>
@@ -93,7 +92,7 @@
     </div>
 </section>
 
-<script type="text/javascript" src="<%=path%>/main.js"></script>
+<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
 

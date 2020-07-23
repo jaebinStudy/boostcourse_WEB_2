@@ -1,5 +1,6 @@
 package kr.or.connect;
 //저장된값을 main.jsp 조회하여 전달.
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.List;
+
 import kr.or.connect.TodoDao;
 import kr.or.connect.TodoDto;
 
@@ -17,7 +19,7 @@ import kr.or.connect.TodoDto;
 public class MainServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public MainServlet(){
+    public MainServlet() {
         super();
     }
 
@@ -30,14 +32,12 @@ public class MainServlet extends HttpServlet {
 
         List<TodoDto> list = dao.getTodos();
 
-        request.setAttribute("todo",list);
-
+        request.setAttribute("todo", list);
 
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/main.jsp");
-        requestDispatcher.forward(request,response);
+        requestDispatcher.forward(request, response);
     }
-
 
 
 }

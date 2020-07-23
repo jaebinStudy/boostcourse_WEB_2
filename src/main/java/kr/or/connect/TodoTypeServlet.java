@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.or.connect.TodoDao;
 import kr.or.connect.TodoDto;
 
-@WebServlet("/TodoTypeServlet")
+@WebServlet("/type")
 public class TodoTypeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -25,8 +25,11 @@ public class TodoTypeServlet extends HttpServlet {
         super();
     }
 
-    protected void doHead(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	}
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	}
+    protected void doHead(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -35,8 +38,8 @@ public class TodoTypeServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         response.setContentType("application/x-www-form-urlencoded");
 
-        String id = (String)request.getParameter("id");
-        String type = (String)request.getParameter("type");
+        String id = (String) request.getParameter("id");
+        String type = (String) request.getParameter("type");
 
         TodoDao dao = new TodoDao();
         TodoDto todo = new TodoDto();
@@ -50,7 +53,7 @@ public class TodoTypeServlet extends HttpServlet {
         TodoDto target = null;
         for (int i = 0; i < len; i++) {
             target = list.get(i);
-            if(target.getId().equals(Long.valueOf(id)))	break;
+            if (target.getId().equals(Long.valueOf(id))) break;
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -61,6 +64,6 @@ public class TodoTypeServlet extends HttpServlet {
         out.close();
 
         String path = request.getContextPath();
-        response.sendRedirect(path + "/main");
+        response.sendRedirect("/main");
     }
 }

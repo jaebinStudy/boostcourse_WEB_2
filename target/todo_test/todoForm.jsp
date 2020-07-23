@@ -11,35 +11,34 @@
 
 
 <body>
-<% String path = request.getContextPath(); %>
-<link rel="stylesheet" type="text/css" href="<%=path%>/todo.css"/>
+<link rel="stylesheet" type="text/css" href="todo.css"/>
 <header><h1 class="title">할 일 등록</h1></header>
 
 <section>
-    <form name="input" action='<%=path%>/add' method="post" class="form-example">
+    <form name="input" action="/main" method="post" class="form-example">
         <div class="form-example">
-        <label for="title"> <span class = font-color>어떤 일 인가요?</span></label> <br>
-        <input  id="title" name="title" type="text" maxlength="24" Placeholder="ex)swift공부하기(24자까지)" required/>
+            <label for="title"> <span class=font-color>어떤 일 인가요?</span></label> <br>
+            <input id="title" name="title" type="text" maxlength="24" Placeholder="ex)swift공부하기(24자까지)" required/>
         </div>
 
         <div class="form-example">
-            <label for="name"><span class = font-color>누가 할 일 인가요?</span></label><br>
-            <input id="name" name ="name" type="text" Placeholder="ex)정재빈" required/>
+            <label for="name"><span class=font-color>누가 할 일 인가요?</span></label><br>
+            <input id="name" name="name" type="text" Placeholder="ex)정재빈" required/>
         </div>
 
         <div class="form-example">
 
 
-            <span span class = font-color>우선 순위를 선택해주세요.</span> <br>
-            <input  type="radio" name="sequence" value="1순위" checked="checked"><span>1순위</span>
-            <input  type="radio" name="sequence" value="2순위"><span>2순위</span>
-            <input  type="radio" name="sequence" value="3순위"><span>3순위</span>
+            <span span class=font-color>우선 순위를 선택해주세요.</span> <br>
+            <input type="radio" name="sequence" value="1순위" checked="checked"><span>1순위</span>
+            <input type="radio" name="sequence" value="2순위"><span>2순위</span>
+            <input type="radio" name="sequence" value="3순위"><span>3순위</span>
         </div>
 
         <div class="form-example">
-            <a href="/MainServlet" class="back_button">이전</a>
-            <input  type="submit" value="제출" class="submit">
-            <input  type="reset" value="초기화" class="clear">
+            <a href="/main" class="back_button">이전</a>
+            <input type="submit" value="제출" class="submit">
+            <input type="reset" value="초기화" class="clear">
 
         </div>
     </form>
