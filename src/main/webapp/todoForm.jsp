@@ -11,7 +11,7 @@
 
 
 <body>
-<link rel="stylesheet" type="text/css" href="todo.css"/>
+<link rel="stylesheet" type="text/css" href="todo.css?after"/>
 <header><h1 class="title">할 일 등록</h1></header>
 
 <section>

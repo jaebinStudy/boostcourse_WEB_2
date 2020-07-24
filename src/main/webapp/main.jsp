@@ -11,7 +11,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Todo</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="main.css?after">
 
 </head>
 <body>
@@ -22,7 +22,7 @@
         </div>
 
         <div id="header-column-right">
-            <a href="todoForm.jsp" class="button-todo">새로운 TO DO 등록</a>
+            <a href="/form" class="button-todo">새로운 TO DO 등록</a>
         </div>
     </div>
 </header>
@@ -33,62 +33,59 @@
         <div id="section-float">
             <div class="section-column">
                 <span class="list">TO DO</span>
-                <div id="TODO" class="section-content">
+                <div id="TODO">
                     <c:forEach var="item" items="${todo }">
-                        <c:if test="${item.getType() == 'TODO'}">
-                            <p>
-                                <span class="item-title">${item.getTitle() }</span> <br>
-                                <fmt:parseDate value="${item.getRegdate()}" var="parsedDate"
-                                               pattern="yyyy-MM-dd HH:mm:ss.S"/>
-                                등록날짜: <fmt:formatDate value="${parsedDate}" pattern="yyyy. MM. dd"/>,
-                                    ${item.getName() },
-                                우선순위 ${item.getSequence()}
-                                <span class='button' id='${item.getType() }#${item.getId()}'>-></span>
-                            </p>
-                        </c:if>
+                    <c:if test="${item.getType() == 'TODO'}">
+                    <p>
+                        <span class="item-title">${item.getTitle() }</span> <br>
+
+                        등록날짜: ${item.getRegDate()},
+                        ${item.getName() },
+                        우선순위 ${item.getSequence()}
+                        <span class="button" id='${item.getType() }#${item.getId()}'>-></span>
+                    </p>
+                    </c:if>
                     </c:forEach>
 
                 </div>
+            </div>
 
-                <div class="section-column">
-                    <span class="list">DOING</span>
-                    <div id="DOING">
-                        <c:forEach var="item" items="${todo }">
-                            <c:if test="${item.getType() == 'DOING'}">
-                                <p>
-                                    <span class="item-title">${item.getTitle() }</span> <br>
-                                    <fmt:parseDate value="${item.getRegdate()}" var="parsedDate"
-                                                   pattern="yyyy-MM-dd HH:mm:ss.S"/>
-                                    등록날짜: <fmt:formatDate value="${parsedDate}" pattern="yyyy. MM. dd"/>,
-                                        ${item.getName() },
-                                    우선순위 ${item.getSequence()}
-                                    <span class='button' id="${item.getType()}#${item.getId()}">-></span>
-                                </p>
-                            </c:if>
-                        </c:forEach>
-                    </div>
+            <div class="section-column">
+                <span class="list">DOING</span>
+                <div id="DOING">
+                    <c:forEach var="item" items="${todo }">
+                    <c:if test="${item.getType() == 'DOING'}">
+                    <p>
+                        <span class="item-title">${item.getTitle() }</span> <br>
+
+                        등록날짜: ${item.getRegDate()},
+                        ${item.getName() },
+                        우선순위 ${item.getSequence()}
+                        <span class="button" id="${item.getType()}#${item.getId()}">-></span>
+                    </p>
+                    </c:if>
+                    </c:forEach>
                 </div>
+            </div>
 
-                <div class="section-column">
-                    <span class="list">DONE</span>
-                    <div id="DONE">
-                        <c:forEach var="item" items="${todo }">
-                            <c:if test="${item.getType() == 'DONE'}">
-                                <p>
-                                    <span class="item-title">${item.getTitle() }</span> <br>
-                                    <fmt:parseDate value="${item.getRegdate()}" var="parsedDate"
-                                                   pattern="yyyy-MM-dd HH:mm:ss.S"/>
-                                    등록날짜: <fmt:formatDate value="${parsedDate}" pattern="yyyy. MM. dd"/>,
-                                        ${item.getName() },
-                                    우선순위 ${item.getSequence()}
-                                </p>
-                            </c:if>
-                        </c:forEach>
+            <div class="section-column">
+                <span class="list">DONE</span>
+                <div id="DONE">
+                    <c:forEach var="item" items="${todo }">
+                    <c:if test="${item.getType() == 'DONE'}">
+                    <p>
+                        <span class="item-title">${item.getTitle() }</span> <br>
+                        등록날짜: ${item.getRegDate()},
+                        ${item.getName() },
+                        우선순위 ${item.getSequence()}
+                    </p>
+                    </c:if>
+                    </c:forEach>
 
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 

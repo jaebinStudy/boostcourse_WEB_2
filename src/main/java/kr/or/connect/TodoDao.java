@@ -27,7 +27,6 @@ public class TodoDao {
 
     public int addTodo(TodoDto dto) {
         int inserCount = 0;
-        long id = 1;
 
         try {
             forName("com.mysql.jdbc.Driver");
@@ -63,7 +62,7 @@ public class TodoDao {
             e.printStackTrace();
         }
 
-        String sql = "select id, title, name, sequence, type, regdate from todo order by regdate desc select id, title, name, sequence, type, regdate from todo where type = 'TODO' order by regdate desc";
+        String sql = "select id, title, name, sequence, type, regdate from todo where type = 'TODO' order by regdate desc";
 
 
 
@@ -76,9 +75,9 @@ public class TodoDao {
                     String name = rs.getString("name");
                     int sequence = rs.getInt("sequence");
                     String type = rs.getString("type");
-                    String reqDate = rs.getString("reqDate");
+                    String regdate = rs.getString("regdate");
 
-                    TodoDto dto = new TodoDto(id, name, reqDate, sequence, title, type);
+                    TodoDto dto = new TodoDto(id, name, regdate, sequence, title, type);
 
                     myList.add(dto);
 

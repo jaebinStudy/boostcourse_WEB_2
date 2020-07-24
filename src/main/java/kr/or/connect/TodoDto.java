@@ -37,7 +37,12 @@ public class TodoDto {
         return name;
     }
 
-    public String getRegdate() {
+    public String getRegDate() {
+        SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd");
+
+        Date time = new Date();
+
+        String regdate = format1.format(time);
         return regdate;
     }
 
@@ -61,7 +66,8 @@ public class TodoDto {
         this.name = name;
     }
 
-    public void setRegdate(String regdate) {
+    public void setRegDate(String regdate) {
+
         this.regdate = regdate;
     }
 

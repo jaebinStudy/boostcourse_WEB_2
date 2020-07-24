@@ -63,7 +63,7 @@ public class TodoTypeServlet extends HttpServlet {
         out.println(json);
         out.close();
 
-        String path = request.getContextPath();
+
         response.sendRedirect("/main");
     }
 }

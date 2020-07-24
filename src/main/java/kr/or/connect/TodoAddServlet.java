@@ -40,8 +40,8 @@ public class TodoAddServlet extends HttpServlet {
 
         dao.addTodo(todo);
 
-        String path = request.getContextPath();
-        response.sendRedirect(path + "/main");//post방식으로 할일등록폼의 값이 일로 전달됨.
+
+        response.sendRedirect( "/main");//post방식으로 할일등록폼의 값이 일로 전달됨.
     }
 
 

@@ -11,11 +11,11 @@
 
 
 <body>
-<link rel="stylesheet" type="text/css" href="todo.css"/>
+<link rel="stylesheet" type="text/css" href="todo.css?after"/>
 <header><h1 class="title">할 일 등록</h1></header>
 
 <section>
-    <form name="input" action="/main" method="post" class="form-example">
+    <form name="input" action="/main.jsp" method="post" class="form-example">
         <div class="form-example">
             <label for="title"> <span class=font-color>어떤 일 인가요?</span></label> <br>
             <input id="title" name="title" type="text" maxlength="24" Placeholder="ex)swift공부하기(24자까지)" required/>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-example">
-            <a href="/main" class="back_button">이전</a>
+            <a href="/main.jsp" class="back_button">이전</a>
             <input type="submit" value="제출" class="submit">
             <input type="reset" value="초기화" class="clear">
 

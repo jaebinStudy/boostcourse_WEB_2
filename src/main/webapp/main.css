@@ -54,11 +54,15 @@
 }
 
 #section-float{
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
     margin:  0 0 0 20%;
 }
 .section-column {
-    display: inline-block;
+    display: block;
+    width: 350px;
+    height: auto;
     border: 0.5px solid black;
 
 }
@@ -75,7 +79,7 @@
 
 }
 
-.section-content {
+/*.section-content {
     display: block;
     border: 0.5px solid black;
     width: 350px;
@@ -83,38 +87,15 @@
     background-color: #e0ffff;
 
 
-}
-
-.content-row {
+}*/
+.item-title{
     display: block;
+    border: 0.5px solid black;
     width: 350px;
-    height: 40px;
-    color: black;
-
+    height: 80px;
+    background-color: #e0ffff;
 }
 
-.content-data {
-    font-size: 5px;
-    color: black;
-    font-family: "맑은 고딕 Semilight";
-}
 
-.content-title {
-    font-size: 10px;
-    color: black;
-    font-family: "맑은 고딕 Semilight";
-}
 
-#section-todo {
-margin: 1%;
-
-}
-
-#section-doing {
-    margin: 1%;
-}
-
-#section-done {
-    margin: 1%;
-}
 
