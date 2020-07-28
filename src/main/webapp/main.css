@@ -1,65 +1,55 @@
 #header-full{
-    display: block;
-    margin: 5% 1%;
-    width: 100%;
+    display: flex;
+    margin: 5% 0;
+    height: 150px;
 
 }
-#header-column-left{
-    display: inline-block;
-    width: 80%;
+/*#header-column-left{*/
+/*    display: inline-block;*/
+/*    width: 80%;*/
 
 
-}
-#header-column-right{
-    float: right;
-    display: inline-block;
-    width: 20%;
+/*}*/
+/*#header-column-right{*/
+/*    float: right;*/
+/*    display: inline-block;*/
+/*    width: 20%;*/
 
 
-}
+/*}*/
 
-.title {
-    display: block;
-    width: 300px;
-    height: 50px;
+.header-title {
+
+    width: 400px;
+    height: 100px;
     transform: rotate(330deg);
     color: #1a536b;
-
     font-size: 30px;
-    font-family: "맑은 고딕 Semilight";
+    font-weight: bold;
+    margin: 50px;
 }
 
-.button-todo {
-    text-decoration: none;
-    text-align: center;
-    font-family: "맑은 고딕 Semilight";
-    color: white;
-    background-color: #50bcdf;
-
-    display: inline-block;
-    border: 0.5px solid black;
+.header-button-todo {
+    font-weight:bold;
+    font-size:15px;
+    margin: 50px;
+    margin-left: 790px;
     width: 200px;
-    height: 30px;
-    font-size: 20px;
-
+    height: 50px;
+    line-height: 50px;
+    background: #03A9F4;
+    color: white;
+    text-align: center;
 }
 
 
 #section_body {
-    display: block;
-    margin: 1%;
-    width: 100%;
-    background-color: white;
-
-}
-
-#section-float{
     display: flex;
-    flex-direction: row;
-    align-content: flex-start;
-    margin:  0 0 0 20%;
+    margin-left: 180px;
+
 }
-.section-column {
+
+.section-main{
     display: block;
     width: 350px;
     height: auto;
@@ -67,7 +57,7 @@
 
 }
 
-.list {
+.section-main-title {
     display: block;
     border: 0.5px solid black;
     width: 350px;
@@ -79,21 +69,22 @@
 
 }
 
-/*.section-content {
+.main-contents{
     display: block;
     border: 0.5px solid black;
     width: 350px;
     height: 80px;
     background-color: #e0ffff;
+}
+.main-up{
 
+}
+.main-dawn{
 
-}*/
-.item-title{
-    display: block;
-    border: 0.5px solid black;
-    width: 350px;
-    height: 80px;
-    background-color: #e0ffff;
+}
+
+.button-typechange{
+
 }
 
 

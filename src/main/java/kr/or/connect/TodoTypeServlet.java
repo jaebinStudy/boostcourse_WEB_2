@@ -25,43 +25,25 @@ public class TodoTypeServlet extends HttpServlet {
         super();
     }
 
-    protected void doHead(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+        System.out.println("todo type exec");
 
+        Long id = Long.parseLong(request.getParameter("id"));
+        String type = request.getParameter("type");
 
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/x-www-form-urlencoded");
-
-        String id = (String) request.getParameter("id");
-        String type = (String) request.getParameter("type");
+        System.out.println(id +" "+ type);
 
         TodoDao dao = new TodoDao();
-        TodoDto todo = new TodoDto();
-        todo.setId(Long.valueOf(id));
-        todo.setType(type);
+        if (type.equals("TODO")) {
+            type="DOING";
+            int updatecount = dao.updateTodo(type, id);
+            System.out.println(updatecount);
 
-        dao.updateTodo(todo);
-
-        List<TodoDto> list = dao.getTodos();
-        int len = list.size();
-        TodoDto target = null;
-        for (int i = 0; i < len; i++) {
-            target = list.get(i);
-            if (target.getId().equals(Long.valueOf(id))) break;
+        }else if(type.equals("DOING")) {
+            type="DONE";
+            int updatecount = dao.updateTodo(type, id);
+            System.out.println(updatecount);
         }
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(target);
-
-        PrintWriter out = response.getWriter();
-        out.println(json);
-        out.close();
 
 
         response.sendRedirect("/main");

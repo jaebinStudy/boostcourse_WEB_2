@@ -17,28 +17,31 @@ import kr.or.connect.TodoDto;
 
 @WebServlet("/add")
 public class TodoAddServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private static final long serialVersionUID = 1L;
+
+    public TodoAddServlet() {
+        super();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
+
 
         String title = request.getParameter("title");
         String name = request.getParameter("name");
         String priority = request.getParameter("sequence");
 
-        TodoDao dao = new TodoDao();
-        TodoDto todo = new TodoDto();
 
         int sequence = 0;
         if (priority.equals("1순위")) sequence = 1;
         else if (priority.equals("2순위")) sequence = 2;
         else sequence = 3; // 3순위
 
-        todo.setTitle(title);
-        todo.setName(name);
-        todo.setSequence(sequence);
 
-
-        dao.addTodo(todo);
+        TodoDao dao = new TodoDao();
+        int insertcount = dao.addTodo(title, name, sequence);
+        System.out.println(insertcount);
 
 
         response.sendRedirect( "/main");//post방식으로 할일등록폼의 값이 일로 전달됨.

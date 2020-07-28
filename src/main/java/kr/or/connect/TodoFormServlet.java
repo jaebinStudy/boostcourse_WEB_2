@@ -11,7 +11,7 @@ import java.io.IOException;
 import kr.or.connect.TodoDao;
 import kr.or.connect.TodoDto;
 
-
+//main 에서 todoform버튼 클릭하면 TodoformServlet으로 오고, todoForm.jsp로 포워드
 @WebServlet("/form")
 public class TodoFormServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -20,7 +20,7 @@ public class TodoFormServlet extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/todoForm.jsp");
         requestDispatcher.forward(request, response);

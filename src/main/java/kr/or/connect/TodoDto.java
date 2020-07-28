@@ -1,29 +1,24 @@
 package kr.or.connect;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.sql.*;
-
-
 public class TodoDto {
 
     private Long id;
     private String name;
-    private String regdate;
+    private String regDate;
     private int sequence;
     private String title;
     private String type;
 
     public TodoDto() {
-
+        super();
     }
 
-    public TodoDto(Long id, String name, String regdate, int sequence, String title, String type){
+    public TodoDto(Long id, String name, String regDate, int sequence, String title, String type) {
         super();
         this.id = id;
         this.name = name;
-        this.regdate = regdate;
+        this.regDate = regDate;
         this.sequence = sequence;
         this.title = title;
         this.type = type;
@@ -33,50 +28,40 @@ public class TodoDto {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getRegDate() {
-        SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd");
-
-        Date time = new Date();
-
-        String regdate = format1.format(time);
-        return regdate;
-    }
-
-    public int getSequence() {
-        return sequence;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getType() {
-        return type;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setRegDate(String regdate) {
+    public String getRegDate() { return regDate; }
 
-        this.regdate = regdate;
+    public void setRegDate(String regDate) { this.regDate = regDate; }
+
+    public int getSequence() {
+        return sequence;
     }
 
     public void setSequence(int sequence) {
         this.sequence = sequence;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public void setType(String type) {
@@ -84,8 +69,9 @@ public class TodoDto {
     }
 
     @Override
-    public String toString(){
-        return    "Todo [id= " +id + ", name= " +name + ", regdate= " +regdate + ", sequence= " +sequence + ", title= " +title + ", type= " + type + "]";
+    public String toString() {
+        return "TodoDto [id= " + id + ", name= " + name + ", regDate= " + regDate + ", sequence= " + sequence + ", " +
+                "title= " + title + ", type= " + type + "]";
     }
 }
 

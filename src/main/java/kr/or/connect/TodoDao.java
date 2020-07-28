@@ -3,20 +3,12 @@ package kr.or.connect;
 
 // getTodos(), addTodo(), updateTodo()메소드가 있는 테이블이 있는곳.
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import java.sql.*;
-import kr.or.connect.TodoDto;
-
-import kr.or.connect.TodoDto;
-
-import static java.lang.Class.forName;
 
 
 public class TodoDao {
@@ -24,37 +16,57 @@ public class TodoDao {
     private static String dbuser = "todouser";
     private static String dbpasswd = "todo123!@#";
 
+//--------------------addTodo()-----------------------------------------------------
 
-    public int addTodo(TodoDto dto) {
-        int inserCount = 0;
+    public int addTodo(String title,String name,int sequence) {
+        Integer insertcount = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
 
         try {
-            forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        String sql = "insert into todo(title, name, sequence) values(?, ?, ?)";
 
-        try(Connection conn = DriverManager.getConnection(dburl,dbuser,dbpasswd);
-        PreparedStatement ps =conn.prepareStatement(sql)){
+        String sql = "INSERT INTO todo(title,name,sequence) VALUES(?,?,?)";
 
+        try {
+            conn = DriverManager.getConnection(dburl, dbuser, dbpasswd);
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, title);
+            ps.setString(2, name);
+            ps.setInt(3, sequence);
+            insertcount = ps.executeUpdate();
 
-            ps.setString(1,dto.getTitle());
-            ps.setString(2, dto.getName());
-            ps.setInt(3, dto.getSequence());
-
-
-            inserCount = ps.executeUpdate();
-
-            
-        }catch (Exception ex){
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        return inserCount;
+        return insertcount;
     }
+//---------------------getTodos()----------------------------------------------------
 
-    public List<TodoDto> getTodos() {
-        List<TodoDto> myList = new ArrayList<>();
+    public ArrayList<TodoDto> getTodos() {
+        ArrayList<TodoDto> myList = new ArrayList<>();
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -62,79 +74,96 @@ public class TodoDao {
             e.printStackTrace();
         }
 
-        String sql = "select id, title, name, sequence, type, regdate from todo where type = 'TODO' order by regdate desc";
+        String sql = "select id, title, name, sequence, type, regdate from todo where order by regdate desc";
 
 
-
-        try(Connection conn = DriverManager.getConnection(dburl,dbuser,dbpasswd);
-        PreparedStatement ps =conn.prepareStatement(sql)) {
-            try (ResultSet rs = ps.executeQuery()) {
+        try {
+            conn = DriverManager.getConnection(dburl, dbuser, dbpasswd);
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            try {
                 while (rs.next()) {
-                    long id = rs.getLong("id");
-                    String title = rs.getString("title");
-                    String name = rs.getString("name");
-                    int sequence = rs.getInt("sequence");
-                    String type = rs.getString("type");
-                    String regdate = rs.getString("regdate");
-
-                    TodoDto dto = new TodoDto(id, name, regdate, sequence, title, type);
-
-                    myList.add(dto);
-
+                    TodoDto todo = new TodoDto();
+                    todo.setId(rs.getLong(1));
+                    todo.setTitle(rs.getString(2));
+                    todo.setName(rs.getString(3));
+                    todo.setSequence(rs.getInt(4));
+                    todo.setType(rs.getString(5));
+                    todo.setRegDate(rs.getString(6));
+                    myList.add(todo);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }catch (Exception ex){
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
         return myList;
     }
 
-    public int updateTodo(TodoDto dto) {
-        int updateCount = 0;
-
-
-        Connection conn = null;
-        PreparedStatement ps = null;
+//-----------------------updateTodo()-----------------------------------------------------
+    public int updateTodo(String type, Long id) {
+        Integer updatecount = null;
+        Connection conn=null;
+        PreparedStatement ps =null;
 
         try {
-            Class.forName( "com.mysql.jdbc.Driver" );
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
-
-            String sql = null;
-            if (dto.getType().equals("TODO")) {
-                sql = "UPDATE todo SET type = 'DOING' WHERE id = ?";
-            } else { //"DOING"
-                sql = "UPDATE todo SET type = 'DONE' WHERE id = ?";
-            }
-
-            conn = DriverManager.getConnection ( dburl, dbuser, dbpasswd );
+        String sql = "UPDATE todo SET type=? WHERE id=?";
+        try {
+            conn = DriverManager.getConnection(dburl,dbuser,dbpasswd);
             ps = conn.prepareStatement(sql);
 
+            ps.setString(1, type);
+            ps.setLong(2, id);
 
-            ps.setLong(1,  dto.getId());
+            updatecount = ps.executeUpdate();
 
-            updateCount = ps.executeUpdate();
-
-        }catch(Exception ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }finally {
-            if(ps != null) {
+            if (ps != null) {
                 try {
                     ps.close();
-                }catch(Exception ex) {}
-            } // if
-
-            if(conn != null) {
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
                 try {
                     conn.close();
-                }catch(Exception ex) {}
-            } // if
-        } // finally
-
-        return updateCount;
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return updatecount;
     }
 
     }
